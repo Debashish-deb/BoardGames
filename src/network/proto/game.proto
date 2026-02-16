@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package boardgamelegends;
+
+enum GameType {
+  LUDO = 0;
+  CARROM = 1;
+  CHESS = 2;
+}
+
+enum MessageType {
+  UNKNOWN = 0;
+  JOIN = 1;
+  STATE_UPDATE = 2;
+  MOVE = 3;
+  HEARTBEAT = 4;
+}
+
+message PlayerIdentity {
+  string player_id = 1;
+  string display_name = 2;
+}
+
+message GameStatePayload {
+  string game_id = 1;
+  GameType game_type = 2;
+  bytes payload = 3; // JSON serialized state snapshot
+  int64 version = 4;
+}
+
+message MovePayload {
+  string game_id = 1;
+  GameType game_type = 2;
+  string player_id = 3;
+  string move_type = 4;
+  bytes move_data = 5; // JSON encoded move data
+  int64 move_number = 6;
+}
+
+message Envelope {
+  MessageType type = 1;
+  PlayerIdentity player = 2;
+  GameStatePayload state = 3;
+  MovePayload move = 4;
+  int64 timestamp = 5;
+}

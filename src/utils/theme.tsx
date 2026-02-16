@@ -1,4 +1,4 @@
-import { createContext, useContext, type PropsWithChildren, type ReactNode } from 'react';
+import { createContext, useContext, type ReactNode } from 'react';
 
 export const theme = {
   colors: {
@@ -17,7 +17,7 @@ export const theme = {
 
 const ThemeContext = createContext(theme);
 
-export function ThemeProvider({ children }: PropsWithChildren<ReactNode>) {
+export function ThemeProvider({ children }: { children?: ReactNode }) {
   return <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>;
 }
 

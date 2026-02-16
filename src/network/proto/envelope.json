@@ -1,0 +1,117 @@
+{
+  "nested": {
+    "boardgamelegends": {
+      "nested": {
+        "GameType": {
+          "values": {
+            "LUDO": 0,
+            "CARROM": 1,
+            "CHESS": 2
+          }
+        },
+        "MessageType": {
+          "values": {
+            "UNKNOWN": 0,
+            "JOIN": 1,
+            "STATE_UPDATE": 2,
+            "MOVE": 3,
+            "HEARTBEAT": 4,
+            "ACK": 5
+          }
+        },
+        "PlayerIdentity": {
+          "fields": {
+            "player_id": {
+              "type": "string",
+              "id": 1
+            },
+            "display_name": {
+              "type": "string",
+              "id": 2
+            }
+          }
+        },
+        "GameStatePayload": {
+          "fields": {
+            "game_id": {
+              "type": "string",
+              "id": 1
+            },
+            "game_type": {
+              "type": "GameType",
+              "id": 2
+            },
+            "payload": {
+              "type": "bytes",
+              "id": 3
+            },
+            "version": {
+              "type": "int64",
+              "id": 4
+            }
+          }
+        },
+        "MovePayload": {
+          "fields": {
+            "game_id": {
+              "type": "string",
+              "id": 1
+            },
+            "game_type": {
+              "type": "GameType",
+              "id": 2
+            },
+            "player_id": {
+              "type": "string",
+              "id": 3
+            },
+            "move_type": {
+              "type": "string",
+              "id": 4
+            },
+            "move_data": {
+              "type": "bytes",
+              "id": 5
+            },
+            "move_number": {
+              "type": "int64",
+              "id": 6
+            }
+          }
+        },
+        "Envelope": {
+          "fields": {
+            "type": {
+              "type": "MessageType",
+              "id": 1
+            },
+            "player": {
+              "type": "PlayerIdentity",
+              "id": 2
+            },
+            "state": {
+              "type": "GameStatePayload",
+              "id": 3
+            },
+            "move": {
+              "type": "MovePayload",
+              "id": 4
+            },
+            "timestamp": {
+              "type": "int64",
+              "id": 5
+            },
+            "request_id": {
+              "type": "string",
+              "id": 6
+            },
+            "ack_id": {
+              "type": "string",
+              "id": 7
+            }
+          }
+        }
+      }
+    }
+  }
+}
